@@ -1,7 +1,7 @@
 {
-  "name": "@js-toolkit-library/http-client",
-  "version": "0.0.1",
-  "private": true,
+  "name": "@jovandyaz/http-client",
+  "version": "0.0.3",
+  "private": false,
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -15,6 +15,9 @@
       "default": "./dist/index.js"
     }
   },
+  "scripts": {
+    "publish-pkg": "npm publish --access public"
+  },
   "nx": {
     "name": "http-client"
   },
@@ -24,5 +27,15 @@
   },
   "devDependencies": {
     "ts-node": "^10.9.2"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://npm.pkg.github.com",
+    "scope": "@jovandyaz"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jovandyaz/js-toolkit-library.git",
+    "directory": "packages/http-client"
   }
 }

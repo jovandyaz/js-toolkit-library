@@ -1,0 +1,48 @@
+{
+    "name": "react-hooks",
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "packages/react-hooks/src",
+    "projectType": "library",
+    "targets": {
+        "build": {
+            "executor": "@nx/rollup:rollup",
+            "outputs": [
+                "{options.outputPath}"
+            ],
+            "options": {
+                "outputPath": "packages/react-hooks/dist",
+                "main": "packages/react-hooks/src/index.ts",
+                "tsConfig": "packages/react-hooks/tsconfig.lib.json",
+                "assets": [
+                    {
+                        "glob": "packages/react-hooks/README.md",
+                        "input": ".",
+                        "output": "."
+                    }
+                ],
+                "project": "packages/react-hooks/package.json",
+                "compiler": "swc",
+                "format": [
+                    "esm"
+                ]
+            }
+        },
+        "lint": {
+            "executor": "@nx/eslint:lint",
+            "outputs": [
+                "{options.outputFile}"
+            ]
+        },
+        "publish": {
+            "dependsOn": [
+                "build"
+            ],
+            "executor": "nx:run-commands",
+            "options": {
+                "command": "npm publish --access public --no-update-notifier",
+                "cwd": "packages/react-hooks"
+            }
+        }
+    },
+    "tags": []
+}

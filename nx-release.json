@@ -1,0 +1,18 @@
+{
+    "changelog": true,
+    "tag": true,
+    "commit": true,
+    "projects": [
+        "http-client",
+        "react-hooks"
+    ],
+    "version": {
+        "conventionalCommits": true,
+        "generatorOptions": {
+            "packageRoot": "packages"
+        }
+    },
+    "publish": {
+        "registry": "https://npm.pkg.github.com"
+    }
+}

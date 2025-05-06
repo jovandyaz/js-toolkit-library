@@ -1,7 +1,7 @@
 {
-  "name": "@js-toolkit-library/react-hooks",
-  "version": "0.0.1",
-  "private": true,
+  "name": "@jovandyaz/react-hooks",
+  "version": "0.0.3",
+  "private": false,
   "type": "module",
   "main": "./dist/index.esm.js",
   "module": "./dist/index.esm.js",
@@ -15,6 +15,9 @@
       "default": "./dist/index.esm.js"
     }
   },
+  "scripts": {
+    "publish-pkg": "npm publish --access public"
+  },
   "nx": {
     "name": "react-hooks"
   },
@@ -25,5 +28,15 @@
   "peerDependencies": {
     "react": ">=17.0.0",
     "react-dom": ">=17.0.0"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://npm.pkg.github.com",
+    "scope": "@jovandyaz"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jovandyaz/js-toolkit-library.git",
+    "directory": "packages/react-hooks"
   }
 }

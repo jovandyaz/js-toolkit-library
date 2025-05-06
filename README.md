@@ -1,90 +1,180 @@
-# Org
+# JS Toolkit Library
 
 <a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is almost ready ✨.
+A modern JavaScript toolkit library built with [Nx](https://nx.dev) to provide reusable utilities for web applications.
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/nx-api/js?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+## Packages
 
-## Finish your CI setup
+This monorepo contains the following packages:
 
-[Click here to finish setting up your workspace!](https://cloud.nx.app/connect/pTCBxbc6Ln)
+### HTTP Client (`@jovandyaz/http-client`)
 
+A flexible HTTP client wrapper built around Axios with:
 
-## Generate a library
-
-```sh
-npx nx g @nx/js:lib packages/pkg1 --publishable --importPath=@my-org/pkg1
-```
-
-## Run tasks
-
-To build the library use:
+- Type-safe request/response handling
+- Configurable interceptors
+- Testing utilities for HTTP requests
 
 ```sh
-npx nx build pkg1
+# Installation
+npm install @jovandyaz/http-client
 ```
 
-To run any task with Nx use:
+### React Hooks (`@jovandyaz/react-hooks`)
+
+Collection of reusable React hooks that include:
+
+- Storage hooks (useLocalStorage)
+- Media hooks (useMediaQueries)
 
 ```sh
-npx nx <target> <project-name>
+# Installation with npm
+npm install @jovandyaz/react-hooks
+
+# Installation with pnpm
+pnpm add @jovandyaz/react-hooks
 ```
 
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
+## Development
 
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+### Build a package
 
-## Versioning and releasing
-
-To version and release the library use
-
+```sh
+npx nx build http-client
+npx nx build react-hooks
 ```
+
+### Add a new package
+
+```sh
+npx nx g @nx/js:lib packages/new-package-name --publishable --importPath=@jovandyaz/new-package-name
+```
+
+## Versioning and Releasing
+
+This library follows [Semantic Versioning](https://semver.org/). Packages are published to the GitHub Package Registry.
+
+### Local Development Publishing
+
+For testing purposes, you can publish packages locally:
+
+```sh
+# Build all packages
+npx nx run-many -t build --all
+
+# Publish a specific package
+npx nx publish http-client
+npx nx publish react-hooks
+```
+
+### Automated Publishing
+
+Packages are automatically published via GitHub Actions when:
+
+1. Tags are created with the format `v*` (e.g., `v1.0.0`)
+2. Manually triggering the "Publish Packages" workflow from the Actions tab
+
+The GitHub workflow will:
+
+- Build all packages
+- Run tests
+- Publish all packages to GitHub Package Registry
+
+### Setting up for development
+
+To use these packages in development, add the following to your project's `.npmrc`:
+
+```properties
+@jovandyaz:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=${GITHUB_TOKEN}
+```
+
+And add your GitHub token to your environment variables:
+
+```sh
+# Add to your ~/.zshrc or equivalent shell configuration
+export GITHUB_TOKEN="your-github-token"
+```
+
+To version and release the libraries:
+
+```sh
 npx nx release
 ```
 
-Pass `--dry-run` to see what would happen without actually releasing the library.
+Pass `--dry-run` to see what would happen without actually releasing the libraries.
 
-[Learn more about Nx release &raquo;](hhttps://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+## Publishing Packages
 
-## Keep TypeScript project references up to date
+The packages in this repository are automatically published to GitHub Packages when a new version tag is pushed to the repository. The publication process is handled by GitHub Actions.
 
-Nx automatically updates TypeScript [project references](https://www.typescriptlang.org/docs/handbook/project-references.html) in `tsconfig.json` files to ensure they remain accurate based on your project dependencies (`import` or `require` statements). This sync is automatically done when running tasks such as `build` or `typecheck`, which require updated references to function correctly.
+### Manual Publishing
 
-To manually trigger the process to sync the project graph dependencies information to the TypeScript project references, run the following command:
+If you need to publish packages manually, follow these steps:
+
+1. Make sure you have a GitHub token with the appropriate permissions
+2. Add your GitHub token to your local `.npmrc` file:
+
+```sh
+@jovandyaz:registry=https://npm.pkg.github.com
+//npm.pkg.github.com/:_authToken=YOUR_GITHUB_TOKEN
+```
+
+3. Run the release command:
+
+```sh
+GITHUB_TOKEN=YOUR_GITHUB_TOKEN npx nx release --dry-run=false
+```
+
+### Creating a New Release
+
+To create a new release that will trigger the automatic publishing workflow:
+
+1. Update the version in package.json files
+2. Commit your changes
+3. Create and push a new tag:
+
+```sh
+git tag v1.0.0
+git push origin v1.0.0
+```
+
+## Available Scripts
+
+The project includes several helpful scripts in the root `package.json`:
+
+```sh
+# Build all packages
+pnpm build:all
+
+# Publish all packages
+pnpm publish:all
+
+# Version packages individually
+pnpm version:http-client patch  # or minor, major, etc.
+pnpm version:react-hooks patch  # or minor, major, etc.
+
+# Release packages using nx release
+pnpm release
+```
+
+## TypeScript Project References
+
+Nx automatically manages TypeScript project references in the `tsconfig.json` files. To manually sync these references:
 
 ```sh
 npx nx sync
 ```
 
-You can enforce that the TypeScript project references are always in the correct state when running in CI by adding a step to your CI job configuration that runs the following command:
+To verify references are correct (useful for CI):
 
 ```sh
 npx nx sync:check
 ```
 
-[Learn more about nx sync](https://nx.dev/reference/nx-commands#sync)
+## Useful Links
 
-
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Install Nx Console
-
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
-
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Useful links
-
-Learn more:
-
-- [Learn more about this workspace setup](https://nx.dev/nx-api/js?utm_source=nx_project&amp;utm_medium=readme&amp;utm_campaign=nx_projects)
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-And join the Nx community:
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+- [Nx Documentation](https://nx.dev)
+- [Setting up CI with Nx](https://nx.dev/ci/intro/ci-with-nx)
+- [Managing Releases with Nx](https://nx.dev/features/manage-releases)

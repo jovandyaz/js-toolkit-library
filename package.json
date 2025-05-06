@@ -1,8 +1,14 @@
 {
-  "name": "@js-toolkit-library/source",
+  "name": "@jovandyaz/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "build:all": "nx run-many -t build --all",
+    "publish:all": "nx run-many -t publish --all",
+    "version:http-client": "cd packages/http-client && npm version",
+    "version:react-hooks": "cd packages/react-hooks && npm version",
+    "release": "nx release"
+  },
   "private": true,
   "dependencies": {},
   "devDependencies": {
