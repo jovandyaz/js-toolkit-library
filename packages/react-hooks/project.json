@@ -24,7 +24,12 @@
                 "compiler": "swc",
                 "format": [
                     "esm"
-                ]
+                ],
+                "external": [
+                    "react",
+                    "react-dom"
+                ],
+                "rollupConfig": "packages/react-hooks/rollup.config.cjs"
             }
         },
         "lint": {

@@ -1,23 +1,26 @@
 {
   "name": "@jovandyaz/http-client",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "private": false,
   "type": "module",
-  "main": "./dist/index.js",
-  "module": "./dist/index.js",
-  "types": "./dist/index.d.ts",
+  "main": "./dist/index.esm.js",
+  "module": "./dist/index.esm.js",
+  "types": "./dist/index.esm.d.ts",
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "development": "./src/index.ts",
-      "types": "./dist/index.d.ts",
-      "import": "./dist/index.js",
-      "default": "./dist/index.js"
+      "types": "./dist/index.esm.d.ts",
+      "import": "./dist/index.esm.js",
+      "default": "./dist/index.esm.js"
     }
   },
   "scripts": {
+    "build": "nx build",
     "publish-pkg": "npm publish --access public"
   },
+  "files": [
+    "dist"
+  ],
   "nx": {
     "name": "http-client"
   },

@@ -1,5 +1,6 @@
 import { ChangeEvent } from 'react';
-import { useLocalStorage } from '@hooks/storage';
+import { useLocalStorage } from '../src/lib/storage/useLocalStorage';
+
 const LocalStorageExample = () => {
   const [name, setName, removeName] = useLocalStorage<string>('user-name', '');
 

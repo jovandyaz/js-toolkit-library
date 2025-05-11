@@ -116,11 +116,11 @@ export function useMediaQuery(query: string): boolean {
 }
 
 /**
- * Hook that checks if the current viewport is mobile (max-width: 599px)
+ * Hook that checks if the current viewport is mobile (max-width: 960)
  * @returns Boolean indicating if the viewport is mobile size
  */
 export function useIsMobile(): boolean {
-  return useBreakpointDown('xs');
+  return useBreakpointDown('md');
 }
 
 /**

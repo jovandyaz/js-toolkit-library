@@ -5,8 +5,8 @@ import {
   useMediaQuery,
   useIsMobile,
   useIsDesktop,
-  Breakpoint,
-} from '@hooks/media';
+} from '../src/lib/media/useMediaQueries';
+import { Breakpoint } from '../src/lib/media/types';
 
 const MediaQueriesExample = () => {
   const isDesktop = useBreakpointUp('md');

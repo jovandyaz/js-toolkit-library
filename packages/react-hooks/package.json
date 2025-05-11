@@ -1,6 +1,6 @@
 {
   "name": "@jovandyaz/react-hooks",
-  "version": "0.0.4",
+  "version": "0.0.6",
   "private": false,
   "type": "module",
   "main": "./dist/index.esm.js",
@@ -9,15 +9,18 @@
   "exports": {
     "./package.json": "./package.json",
     ".": {
-      "development": "./src/index.ts",
       "types": "./dist/index.esm.d.ts",
       "import": "./dist/index.esm.js",
       "default": "./dist/index.esm.js"
     }
   },
   "scripts": {
+    "build": "nx build",
     "publish-pkg": "npm publish --access public"
   },
+  "files": [
+    "dist"
+  ],
   "nx": {
     "name": "react-hooks"
   },

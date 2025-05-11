@@ -24,6 +24,9 @@
                 "compiler": "swc",
                 "format": [
                     "esm"
+                ],
+                "external": [
+                    "axios"
                 ]
             }
         },
