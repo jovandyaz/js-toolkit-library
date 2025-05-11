@@ -2,14 +2,15 @@ import {
   useBreakpointUp,
   useBreakpointDown,
   useBreakpointBetween,
+  useMediaQuery,
+  useIsMobile,
+  useIsDesktop,
   Breakpoint,
 } from '@hooks/media';
 
 const MediaQueriesExample = () => {
   const isDesktop = useBreakpointUp('md');
-
   const isMobile = useBreakpointDown('sm');
-
   const isTablet = useBreakpointBetween('sm', 'lg');
 
   const renderByBreakpoint = () => {
@@ -73,14 +74,48 @@ const MediaQueriesExample = () => {
     );
   };
 
+  const CustomMediaQueryDemo = () => {
+    const isHighResolution = useMediaQuery('(min-resolution: 2dppx)');
+    const hasHover = useMediaQuery('(hover: hover)');
+    const preferReducedMotion = useMediaQuery(
+      '(prefers-reduced-motion: reduce)'
+    );
+
+    return (
+      <div
+        style={{
+          marginBottom: '20px',
+          border: '1px solid #ccc',
+          padding: '15px',
+          borderRadius: '5px',
+        }}
+      >
+        <h3>Custom Media Query Examples</h3>
+        <ul>
+          <li>
+            <strong>High Resolution Display:</strong>{' '}
+            {isHighResolution ? 'Yes' : 'No'}
+          </li>
+          <li>
+            <strong>Hover Capability:</strong> {hasHover ? 'Yes' : 'No'}
+          </li>
+          <li>
+            <strong>Prefers Reduced Motion:</strong>{' '}
+            {preferReducedMotion ? 'Yes' : 'No'}
+          </li>
+        </ul>
+      </div>
+    );
+  };
+
   return (
     <div style={getResponsiveStyles()}>
       <h1>useMediaQueries Examples</h1>
 
       <div style={{ marginBottom: '20px' }}>
         <h2>Current Viewport Status</h2>
-        <p>Is Mobile (xs down): {isMobile ? 'Yes' : 'No'}</p>
-        <p>Is Tablet (sm-lg): {isTablet ? 'Yes' : 'No'}</p>
+        <p>Is Mobile (xs to sm): {isMobile ? 'Yes' : 'No'}</p>
+        <p>Is Tablet (sm to lg): {isTablet ? 'Yes' : 'No'}</p>
         <p>Is Desktop (md up): {isDesktop ? 'Yes' : 'No'}</p>
       </div>
 
@@ -88,6 +123,25 @@ const MediaQueriesExample = () => {
         <h2>Conditional Rendering</h2>
         {renderByBreakpoint()}
       </div>
+
+      <div style={{ marginBottom: '20px' }}>
+        <h2>New Media Hooks Demo</h2>
+        <p>Is Mobile Device (below 600px): {useIsMobile() ? 'Yes' : 'No'}</p>
+        <p>
+          Is Desktop Device (960px and above): {useIsDesktop() ? 'Yes' : 'No'}
+        </p>
+        <p>Is Print Mode: {useMediaQuery('print') ? 'Yes' : 'No'}</p>
+        <p>
+          Is Dark Mode:{' '}
+          {useMediaQuery('(prefers-color-scheme: dark)') ? 'Yes' : 'No'}
+        </p>
+        <p>
+          Is Landscape Orientation:{' '}
+          {useMediaQuery('(orientation: landscape)') ? 'Yes' : 'No'}
+        </p>
+      </div>
+
+      <CustomMediaQueryDemo />
 
       <BreakpointDemo />
     </div>

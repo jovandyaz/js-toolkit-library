@@ -1,13 +1,14 @@
 # Contributing to HTTP Client
 
-Thank you for your interest in contributing to the HTTP Client package! This document provides guidelines and instructions for contributing.
+Thank you for your interest in contributing to the HTTP Client package!
+This document provides guidelines and instructions for contributing.
 
 ## Development Setup
 
 1. **Clone the repository**
 
 ```bash
-git clone https://github.com/your-org/js-toolkit-library.git
+git clone https://github.com/jovandyaz/js-toolkit-library.git
 cd js-toolkit-library
 ```
 

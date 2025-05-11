@@ -1,12 +1,14 @@
 {
   "name": "@jovandyaz/source",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "MIT",
   "scripts": {
     "build:all": "nx run-many -t build --all",
     "publish:all": "nx run-many -t publish --all",
     "version:http-client": "cd packages/http-client && npm version",
     "version:react-hooks": "cd packages/react-hooks && npm version",
+    "publish:http-client": "nx run http-client:publish",
+    "publish:react-hooks": "nx run react-hooks:publish",
     "release": "nx release"
   },
   "private": true,

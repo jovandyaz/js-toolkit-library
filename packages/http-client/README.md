@@ -15,19 +15,19 @@ A robust and extensible HTTP client package for React/TypeScript applications bu
 
 ```bash
 # If using pnpm
-pnpm add @js-toolkit-library/http-client
+pnpm add @jovandyaz/http-client
 
 # If using npm
-npm install @js-toolkit-library/http-client
+npm install @jovandyaz/http-client
 
 # If using yarn
-yarn add @js-toolkit-library/http-client
+yarn add @jovandyaz/http-client
 ```
 
 ## Basic Usage
 
 ```typescript
-import { createHttpClient, isHttpError } from '@js-toolkit-library/http-client';
+import { createHttpClient, isHttpError } from '@jovandyaz/http-client';
 
 // Create a basic HTTP client
 const httpClient = createHttpClient({
@@ -80,7 +80,7 @@ async function fetchData() {
 ## Authentication
 
 ```typescript
-import { createHttpClient, AuthTokenProvider } from '@js-toolkit-library/http-client';
+import { createHttpClient, AuthTokenProvider } from '@jovandyaz/http-client';
 
 // Create an auth token provider
 const authTokenProvider: AuthTokenProvider = {
@@ -126,7 +126,7 @@ const httpClient = createHttpClient({
 ## Advanced Configuration
 
 ```typescript
-import { createHttpClient, HttpClientConfig } from '@js-toolkit-library/http-client';
+import { createHttpClient, HttpClientConfig } from '@jovandyaz/http-client';
 
 const config: HttpClientConfig = {
   baseURL: 'https://api.example.com',
@@ -195,7 +195,7 @@ const data = await httpClient.get<User[]>('/users', {
 ## Testing with Mocks
 
 ```typescript
-import { createMockHttpClient } from '@js-toolkit-library/http-client';
+import { createMockHttpClient } from '@jovandyaz/http-client';
 
 // Define your interface types
 interface User {

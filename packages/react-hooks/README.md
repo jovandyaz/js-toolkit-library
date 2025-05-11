@@ -1,4 +1,4 @@
-# @js-toolkit-library/react-hooks
+# @jovandyaz/react-hooks
 
 A collection of utility React hooks for modern React applications.
 
@@ -6,13 +6,13 @@ A collection of utility React hooks for modern React applications.
 
 ```bash
 # Using pnpm (recommended)
-pnpm add @js-toolkit-library/react-hooks
+pnpm add @jovandyaz/react-hooks
 
 # Using npm
-npm install @js-toolkit-library/react-hooks
+npm install @jovandyaz/react-hooks
 
 # Using yarn
-yarn add @js-toolkit-library/react-hooks
+yarn add @jovandyaz/react-hooks
 ```
 
 ## Development
@@ -57,7 +57,7 @@ const [value, setValue, removeItem] = useLocalStorage<T>(key, initialValue);
 **Example:**
 
 ```tsx
-import { useLocalStorage } from '@js-toolkit-library/react-hooks';
+import { useLocalStorage } from '@jovandyaz/react-hooks';
 
 function App() {
   const [name, setName, removeName] = useLocalStorage<string>('user-name', 'John');
@@ -76,6 +76,46 @@ function App() {
 ```
 
 ### Media Queries
+
+#### `useMediaQuery`
+
+Hook that detects if a media query matches the current screen size.
+
+```tsx
+const matches = useMediaQuery(query);
+```
+
+**Parameters:**
+
+- `query`: CSS media query string (e.g. '(min-width: 768px)')
+
+**Returns:**
+
+- `matches`: Boolean indicating if the media query matches
+
+#### `useIsMobile`
+
+Hook that checks if the current viewport is mobile size (below 600px).
+
+```tsx
+const isMobile = useIsMobile();
+```
+
+**Returns:**
+
+- `isMobile`: Boolean indicating if the viewport is mobile sized
+
+#### `useIsDesktop`
+
+Hook that checks if the current viewport is desktop size (960px and above).
+
+```tsx
+const isDesktop = useIsDesktop();
+```
+
+**Returns:**
+
+- `isDesktop`: Boolean indicating if the viewport is desktop sized
 
 #### `useBreakpointUp`
 
@@ -129,11 +169,21 @@ const matches = useBreakpointBetween(start, end);
 **Example:**
 
 ```tsx
-import { useBreakpointUp, useBreakpointDown } from '@js-toolkit-library/react-hooks';
+import {
+  useBreakpointUp,
+  useBreakpointDown,
+  useIsMobile,
+  useIsDesktop,
+  useMediaQuery
+} from '@jovandyaz/react-hooks';
 
 function ResponsiveComponent() {
   const isDesktop = useBreakpointUp('md');
   const isMobile = useBreakpointDown('sm');
+  const isLargeScreen = useMediaQuery('(min-width: 1920px)');
+
+  const isMobileAlt = useIsMobile();
+  const isDesktopAlt = useIsDesktop();
 
   return (
     <div>
@@ -144,6 +194,8 @@ function ResponsiveComponent() {
       ) : (
         <h1>Tablet View</h1>
       )}
+
+      {isLargeScreen && <h2>Extra content for large screens</h2>}
     </div>
   );
 }

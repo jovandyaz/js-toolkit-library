@@ -85,3 +85,48 @@ export const useBreakpointBetween = (
 
   return matches;
 };
+
+/**
+ * Hook that detects if a media query matches the current screen size
+ * @param query CSS media query string (e.g. '(min-width: 768px)')
+ * @returns Boolean indicating if the media query matches
+ */
+export function useMediaQuery(query: string): boolean {
+  const [matches, setMatches] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const media = window.matchMedia(query);
+
+    setMatches(media.matches);
+
+    const listener = (event: MediaQueryListEvent) => {
+      setMatches(event.matches);
+    };
+
+    media.addEventListener('change', listener);
+
+    return () => {
+      media.removeEventListener('change', listener);
+    };
+  }, [query]);
+
+  return matches;
+}
+
+/**
+ * Hook that checks if the current viewport is mobile (max-width: 599px)
+ * @returns Boolean indicating if the viewport is mobile size
+ */
+export function useIsMobile(): boolean {
+  return useBreakpointDown('xs');
+}
+
+/**
+ * Hook that checks if the current viewport is desktop (min-width: 960px)
+ * @returns Boolean indicating if the viewport is desktop size
+ */
+export function useIsDesktop(): boolean {
+  return useBreakpointUp('md');
+}
